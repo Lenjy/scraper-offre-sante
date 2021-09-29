@@ -45,7 +45,15 @@ class Scraper
 
   private
 
-  def get_offers_array(url,tag)
+  def get_max_pages(url, tag_page, match_page)
+    open_page(url).css(tag_page).last.text.match(match_page).to_a.last.to_i
+  end
+
+  def not_saved?(content, body, orga)
+    Offer.find_by(title: content.css(body).text.strip, orga: content.css(orga).text.strip).nil?
+  end
+
+  def get_all_offers(url,tag)
     url = url
     html = open(url)
     return Nokogiri::HTML(html).css(tag)
