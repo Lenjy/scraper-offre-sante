@@ -2,7 +2,7 @@ class OffersController < ApplicationController
   before_action :find_offer, only: [:show, :edit, :update, :destroy]
   def index
     @offers = Offer.all
-    scraper = Scraper.new('https://avisdemarches.leparisien.fr/appel-offre?notice_type=AAPC&kw=sant%C3%A9&where=all&page=1', '.noticard').scrape_offers
+    scraper = ScraperParisien.new.save_offers
   end
 
   def show
