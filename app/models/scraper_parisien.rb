@@ -11,39 +11,17 @@ class ScraperParisien < Scraper
     @tag_number = ''
     @tag_email = ''
     @tag_code = ''
-    @all_orga = []
   end
 
-  # def save_offers
-  #   i = 1
-  #   get_max_pages(@url, ".paginate", /\S (\d)/).times do
-  #     get_all_offers(@url,@tag_offers).each do |element|
-  #       if element.css(".noticard-body").text.strip.downcase.match?(/assurances?/) && element.not_saved?(element)
-  #         offer_saved = element_save(element)
-  #         details_element(offer_saved)
-  #       end
-  #     end
-  #     @url = @url.chop + (@url.chars.last.to_i + i).to_s
-  #   end
-  # end
-
   private
+
+  def element_save(element)
+    super.link = element.search(@tag_link).first.attribute("href").value
+  end
 
   def get_max_pages
     super.match(/\S (\d)/).to_a.last.to_i
   end
-
-  # def get_pages(url, tag)
-  #   open_page(url).css(".paginate").last.text.match(/\S (\d)/).to_a.last.to_i
-  # end
-
-  # def element_save(element)
-  #   Offer.create( title: element.css(".noticard-body").text.strip,
-  #                       orga: element.css(".noticard-orga").text.strip,
-  #                       dept: element.css(".noticard-dept").text.match(/(\d+)/).to_s,
-  #                       link: element.search(".noticard-footer-right a").first.attribute("href").value
-  #           )
-  # end
 
   # def details_element(offer_saved)
   #   html_details = open(offer_saved.link)

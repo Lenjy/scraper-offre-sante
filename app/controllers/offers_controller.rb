@@ -2,7 +2,8 @@ class OffersController < ApplicationController
   before_action :find_offer, only: [:show, :edit, :update, :destroy]
   def index
     @offers = Offer.all
-    scraper = ScraperParisien.new.save_offers
+    # ScraperParisien.new.save_offers
+    ScraperBretagne.new.save_offers
   end
 
   def show

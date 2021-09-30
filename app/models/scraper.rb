@@ -20,45 +20,15 @@ class Scraper
     @tag_number = attributes[:tag_number]
     @tag_email = attributes[:tag_email]
     @tag_code = attributes[:tag_code]
-    @all_orga = []
   end
 
-  # def scrape_offers(tag)
-  #   doc = open_page(@url)
-  #   result = []
-  #   pages = doc.css(".paginate").last.text.match(/\S (\d)/).to_a.last.to_i
-  #   pages.times do
-  #     doc.css(@tag).each do |content|
-  #       if content.css(".noticard-body").text.strip.downcase.match?(/assurances?/)
-  #         title = content.css(".noticard-body").text.strip
-  #         orga = content.css(".noticard-orga").text.strip
-  #         if Offer.find_by(title: title, orga: orga).nil?
-  #           offer = Offer.create( title: title,
-  #                       orga: orga,
-  #                       dept: content.css(".noticard-dept").text.match(/(\d+)/).to_s,
-  #                       link: content.search(".noticard-footer-right a").first.attribute("href").value
-  #           )
-  #           html_details = open(offer.link)
-  #           doc_details = Nokogiri::HTML(html_details)
-  #           if doc_details.css(".txtmark") == []
-  #             details_link(doc_details, offer, ".login-content")
-  #           else
-  #             details_link(doc_details, offer, ".txtmark p")
-  #           end
-  #         end
-  #       end
-  #     end
-  #     doc = open_page(@url.chop + (@url.chars.last.to_i + 1).to_s)
-  #   end
-  #   result
-  # end
   def save_offers
     i = 1
     get_max_pages.times do
       get_all_offers.each do |element|
         if match_key_words?(element) && not_saved?(element)
           offer_saved = element_save(element)
-          details_link(get_link_offer(offer_saved), offer_saved)
+          # details_link(get_link_offer(offer_saved), offer_saved)
         end
       end
       set_next_url(i)
@@ -73,7 +43,6 @@ class Scraper
   end
 
   def not_saved?(element)
-    @all_orga << element.css(@tag_orga).text.strip
     Offer.find_by(title: element.css(@tag_body).text.strip, orga: element.css(@tag_orga).text.strip).nil?
   end
 
@@ -84,14 +53,13 @@ class Scraper
   def get_all_offers
     # @url = url
     html = open(@url)
-    return Nokogiri::HTML(html).css(@tag_offers)
+    Nokogiri::HTML(html).css(@tag_offers)
   end
 
   def element_save(element)
     Offer.create( title: element.css(@tag_body).text.strip,
-                  orga: element.css(@tag_orga).text.strip,
+                  orga: element.css(@tag_orga).text.strip
                   # dept: element.css(@tag).text.match(/(\d+)/).to_s,
-                  link: element.search(@tag_link).first.attribute("href").value
                 )
   end
 
