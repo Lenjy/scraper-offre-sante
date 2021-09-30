@@ -10,7 +10,7 @@ class Scraper
 
   def initialize( attributes = {})
     @url = attributes[:url]
-    @tag_offer = attributes[:tag_offer]
+    @tag_offers = attributes[:tag_offer]
     @tag_max_pages = attributes[:tag_max_pages]
     @tag_body = attributes[:tag_body_offer]
     @tag_orga = attributes[:tag_orga]
@@ -20,6 +20,7 @@ class Scraper
     @tag_number = attributes[:tag_number]
     @tag_email = attributes[:tag_email]
     @tag_code = attributes[:tag_code]
+    @all_orga = []
   end
 
   # def scrape_offers(tag)
@@ -57,7 +58,7 @@ class Scraper
       get_all_offers.each do |element|
         if match_key_words?(element) && not_saved?(element)
           offer_saved = element_save(element)
-          details_element(get_link_offer(offer_saved), offer_saved)
+          details_link(get_link_offer(offer_saved), offer_saved)
         end
       end
       set_next_url(i)
@@ -72,7 +73,8 @@ class Scraper
   end
 
   def not_saved?(element)
-    Offer.find_by(title: element.css(@tag_body).text.strip, orga: content.css(@tag_orga).text.strip).nil?
+    @all_orga << element.css(@tag_orga).text.strip
+    Offer.find_by(title: element.css(@tag_body).text.strip, orga: element.css(@tag_orga).text.strip).nil?
   end
 
   def match_key_words?(element)
@@ -82,7 +84,7 @@ class Scraper
   def get_all_offers
     # @url = url
     html = open(@url)
-    return Nokogiri::HTML(html).css(@tag)
+    return Nokogiri::HTML(html).css(@tag_offers)
   end
 
   def element_save(element)

@@ -11,6 +11,7 @@ class ScraperParisien < Scraper
     @tag_number = ''
     @tag_email = ''
     @tag_code = ''
+    @all_orga = []
   end
 
   # def save_offers
