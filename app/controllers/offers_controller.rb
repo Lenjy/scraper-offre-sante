@@ -1,5 +1,5 @@
 class OffersController < ApplicationController
-  before_action :find_offer, only: [:show, :edit, :update, :destroy]
+  before_action :find_offer, only: [:show, :edit, :create, :update, :destroy]
   def index
     @offers = Offer.all
     # ScraperParisien.new.save_offers
@@ -12,6 +12,15 @@ class OffersController < ApplicationController
   def edit
   end
 
+  def create
+    @offer.update(offer_params)
+    if @offer.save
+      redirect_to @offer
+    else
+      render :edit
+    end
+  end
+
   def update
     @offer.update(offer_params)
     if @offer.save
@@ -22,7 +31,7 @@ class OffersController < ApplicationController
   end
 
   def destroy
-    @offer.delete
+    @offer.destroy
     redirect_to offers_path
   end
 
