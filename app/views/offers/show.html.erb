@@ -1,0 +1,45 @@
+<div class="container my-3">
+  <div class="bg-primary py-3 rounded-top">
+    <div class="d-flex justify-content-center">
+      <h2 class="text-white text-center"><%= @offer.orga %></h2>
+      <a href="<%= edit_offer_path(@offer) %>"><i class="fas fa-edit text-white fa-lg mx-2"></i></a>
+      <a data-method="delete" href="<%= offer_path(@offer) %>"><i class="fas fa-trash-alt text-white fa-lg"></i></a>
+    </div>
+    <h6 class="text-white text-center"><%= @offer.title %></h6>
+  </div>
+  <div class="border border-top-0 border-primary rounded-bottom border-3 m-0 p-0">
+    <div>
+      <div class="p-2">
+        <p class="m-0">Limit date : <%= @offer.date_post.strftime("%d/%m/%Y à %Hh") %></p>
+      </div>
+      <hr class="m-0">
+      <div class="p-2" >
+        <div class="my-2">
+          <h6 class="d-inline text-white bg-primary py-1 px-2 rounded-3">Contact :</h6>
+        </div>
+        <div>
+          <% if @offer.email.nil? %>
+            <p class="my-1">email : Data not retrieved</p>
+          <% else  %>
+            <p class="my-1">email : <%= @offer.email %></p>
+          <% end  %>
+        </div>
+        <% if @offer.phone_number.nil? %>
+          <p class="my-1">Phone_number : Data not retrieved</p>
+        <% else  %>
+          <p class="my-1">Phone_number : <%= @offer.phone_number %></p>
+        <% end %>
+      </div>
+    </div>
+    <hr class="m-0">
+    <div class="p-2">
+      <h6 class=" d-inline text-white bg-primary py-1 px-2 rounded-3"> Content :</h6>
+      <% if @offer.content == "" %>
+        <p class="my-2">Content : Data not retrieved</p>
+      <% else  %>
+        <p class="my-2"><%= @offer.content %> </p>
+      <% end  %>
+    </div>
+  </div>
+  <%= link_to "<< previous", offers_path %>
+</div>

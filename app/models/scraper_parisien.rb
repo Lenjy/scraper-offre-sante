@@ -6,17 +6,19 @@ class ScraperParisien < Scraper
     @tag_body = '.noticard-body'
     @tag_orga = '.noticard-orga'
     @tag_link = '.noticard-footer-right a'
-    @tag_date = ''
+    @tag_date_post = '.date'
     @tag_content = '.txtmark'
-    @tag_number = ''
+    @tag_phone_number = ''
     @tag_email = ''
-    @tag_code = ''
+    # @tag_date_end = '.pink'
+    @offer_instance = nil
   end
 
   private
 
   def element_save(element)
-    super.link = element.search(@tag_link).first.attribute("href").value
+    super.details_link = element.search(@tag_link).first.attribute("href").value
+    @offer_instance.save
   end
 
   def get_max_pages

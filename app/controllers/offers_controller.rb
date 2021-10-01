@@ -3,7 +3,7 @@ class OffersController < ApplicationController
   def index
     @offers = Offer.all
     # ScraperParisien.new.save_offers
-    ScraperBretagne.new.save_offers
+    # ScraperBretagne.new.save_offers
   end
 
   def show

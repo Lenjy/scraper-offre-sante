@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+p "Creation Offer from Parisien in progress"
+ScraperParisien.new.save_offers
+p "offers created"
+
+p "Creation Offer from Bretagne in progress"
+ScraperBretagne.new.save_offers
+p "offers created"

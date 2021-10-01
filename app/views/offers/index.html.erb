@@ -3,9 +3,10 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Orga</th>
+        <th scope="col">Organisation</th>
         <th scope="col">Title</th>
         <th scope="col">Link</th>
+        <th scope="col">Date</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
@@ -16,9 +17,10 @@
           <th scope="row">
             <a class="btn btn-outline-primary" href="<%= offer_path(offer) %>" role="button"><%= i %></a>
           </th>
-          <td><%= offer.orga %></td>
+          <td class="m-0"><%= offer.orga %></td>
           <td><%= offer.title %></td>
-          <td><a class="btn btn-primary" href="<%= offer.link %>" role="button">Link</a></td>
+          <td><a class="btn btn-primary" href="<%= offer.details_link %>" role="button">Link</a></td>
+          <td><%= offer.date_post.strftime("%d/%m/%Y à %Hh") %></td>
           <td>
             <a href="<%= edit_offer_path(offer) %>"><i class="fas fa-edit"></i></a>
             <a data-method="delete" href="<%= offer_path(offer) %>"><i class="fas fa-trash-alt"></i></a>
