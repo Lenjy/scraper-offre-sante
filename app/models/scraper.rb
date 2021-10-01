@@ -28,7 +28,7 @@ class Scraper
       get_all_offers.each do |element|
         if match_key_words?(element) && not_saved?(element)
           offer_saved = element_save(element)
-          # details_link(get_link_offer(offer_saved), offer_saved)
+          details_link(get_link_offer(offer_saved), offer_saved)
         end
       end
       set_next_url(i)

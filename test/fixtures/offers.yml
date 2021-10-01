@@ -1,19 +1,21 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  orga: MyString
   title: MyString
-  location: MyString
-  email: MyString
+  details_link: MyString
+  date_post: 2021-10-01 09:23:06
   content: MyString
-  link: MyString
-  number: MyString
-  code: MyString
+  email: MyString
+  phone_number: MyString
+  date_end: 2021-10-01 09:23:06
 
 two:
+  orga: MyString
   title: MyString
-  location: MyString
-  email: MyString
+  details_link: MyString
+  date_post: 2021-10-01 09:23:06
   content: MyString
-  link: MyString
-  number: MyString
-  code: MyString
+  email: MyString
+  phone_number: MyString
+  date_end: 2021-10-01 09:23:06
