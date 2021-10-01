@@ -26,6 +26,12 @@ class OffersController < ApplicationController
     redirect_to offers_path
   end
 
+  def search
+    ScraperParisien.new.save_offers
+    ScraperBretagne.new.save_offers
+    redirect_to offers_path
+  end
+
   private
 
   def offer_params
