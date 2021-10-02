@@ -2,8 +2,6 @@ class OffersController < ApplicationController
   before_action :find_offer, only: [:show, :edit, :create, :update, :destroy]
   def index
     @offers = Offer.all
-    # ScraperParisien.new.save_offers
-    # ScraperBretagne.new.save_offers
   end
 
   def show
@@ -31,7 +29,6 @@ class OffersController < ApplicationController
   end
 
   def destroy
-    # raise
     @offer.destroy
     redirect_to offers_path
   end
@@ -45,7 +42,7 @@ class OffersController < ApplicationController
   private
 
   def offer_params
-    params.require(:offer).permit(:title, :location)
+    params.require(:offer).permit(:orga, :title, :email, :phone_number, :content)
   end
 
   def find_offer

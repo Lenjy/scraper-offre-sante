@@ -24,9 +24,6 @@
           <td>
             <a href="<%= edit_offer_path(offer) %>"><i class="fas fa-edit"></i></a>
             <a data-method="delete" href="<%= offer_path(offer) %>"><i class="fas fa-trash-alt"></i></a>
-            <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/offers/<%= offer.id %>"><%=  %>
-              Delete the spoon
-            </a>
           </td>
         </tr>
         <% i += 1 %>
