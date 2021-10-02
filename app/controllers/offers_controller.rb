@@ -31,6 +31,7 @@ class OffersController < ApplicationController
   end
 
   def destroy
+    # raise
     @offer.destroy
     redirect_to offers_path
   end
