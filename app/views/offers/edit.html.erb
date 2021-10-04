@@ -5,14 +5,10 @@
       <%= simple_form_for @offer do |f| %>
           <%= f.input :orga %>
           <%= f.input :title %>
-          <div class="d-flex justify-content-between align-items-center">
-            <%= f.input :email %>
-            <%= f.input :phone_number %>
-          </div>
-          <div class="d-flex justify-content-between align-items-center">
-            <%= f.input :content, input_html: { class: 'form-control' }, input_html: { id: 'offer_content' } %>
-          </div>
-          <%= f.submit 'Post' %>
+          <%= f.input :email %>
+          <%= f.input :phone_number %>
+          <%= f.input :content, as: :text, input_html: { class: 'mb-3' }  %>
+          <%= f.submit 'Edit'%>
       <% end %>
     </div>
   </div>

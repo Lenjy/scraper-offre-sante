@@ -19,7 +19,7 @@
           </th>
           <td class="m-0"><%= offer.orga %></td>
           <td><%= offer.title %></td>
-          <td><a class="btn btn-primary" href="<%= offer.details_link %>" role="button">Link</a></td>
+          <td><a class="btn btn-primary" href="<%= offer.details_link %>" target="_blank" role="button">Link</a></td>
           <td><%= offer.date_post.strftime("%d/%m/%Y à %Hh") %></td>
           <td>
             <a href="<%= edit_offer_path(offer) %>"><i class="fas fa-edit"></i></a>
