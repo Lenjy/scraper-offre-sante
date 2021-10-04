@@ -6,6 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+p "destoy all Offers"
+Offer.all.delete_all
+
 p "Creation Offer from Parisien in progress"
 ScraperParisien.new.save_offers
 p "offers created"
